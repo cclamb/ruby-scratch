@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/s_3'
+require 'logging'
+
+appender = Logging.appenders.s3 \
+  :level => :debug, \
+  :layout => Logging.layouts.yaml(:format_as => :yaml), \
+  :source => 'some-node-somewhere'
+
+log = Logging.logger[self]
+log.add_appenders 's3'
+
+log.info 'Informational Message'
+#sleep 1
+log.info 'whoops'
+#sleep 1
+log.info ({:a => 1, :b => 2, :c => 3})
+#sleep 1

@@ -1,0 +1,5 @@
+= overlay
+
+Generate this with
+    overlay rdoc
+After you have described your command line interface
