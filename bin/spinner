@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+puts "Starting spinner.\n"
+
+Process::daemon true, false
+
+continue = true
+cnt = 0
+
+while continue
+	sleep 1
+	cnt += 1
+	break if cnt > 5
+end
