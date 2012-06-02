@@ -37,3 +37,13 @@ end
 task :env, :hosts => hosts do
   run 'env'
 end
+
+task :spinner_start, :hosts => hosts do
+	run 'ruby-scratch/bin/spinner'
+end
+
+task :spinner_refresh, :hosts => hosts do
+	run 'cd ruby-scratch ; git pull'
+end
+
+
