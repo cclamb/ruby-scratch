@@ -2,7 +2,7 @@
 
 puts "Starting spinner.\n"
 
-Process::daemon true, false
+#Process::daemon true, false
 
 continue = true
 cnt = 0
