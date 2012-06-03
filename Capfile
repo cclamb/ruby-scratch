@@ -1,49 +1,5 @@
-set :user, 'overlay'
-
-hosts = '173.45.253.130'
-
-task :list_home, :hosts => hosts do
-  run 'ls -al'
-end
-
-task :start, :hosts => hosts do
-  run './overlay-network/bin/overlay -s'
-end
-
-task :stop, :hosts => hosts do
-  run './overlay-network/bin/overlay -t'
-end
-
-task :reload, :hosts => hosts do
-
-end
-
-task :refresh, :hosts => hosts do
-  run 'cd overlay-network ; git pull'
-end
-
-task :restart, :hosts => hosts do
-
-end
-
-task :bundle_install, :hosts => hosts do
-  run 'cd overlay-network ; bundle --no-color install'
-end
-
-task :rvm_list, :hosts => hosts do
-  run 'gem list'
-end
-
-task :env, :hosts => hosts do
-  run 'env'
-end
-
-task :spinner_start, :hosts => hosts do
-	run 'ruby-scratch/bin/spinner'
-end
-
-task :spinner_refresh, :hosts => hosts do
-	run 'cd ruby-scratch ; git pull'
-end
-
-
+load 'deploy'
+# Uncomment if you are using Rails' asset pipeline
+    # load 'deploy/assets'
+Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
+load 'config/deploy' # remove this line to skip loading any of the default tasks
