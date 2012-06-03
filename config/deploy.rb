@@ -54,8 +54,8 @@ namespace :nodes do
 
 	task :start, :roles => :nodes do
     cmd = "current/bin/spinner #{cnt}"
-    puts "\t\t CMD: #{cmd}"
-		run cmd
+    puts "\t\tCMD: #{cmd}"
+		run cmd, { :data => cnt } { |c,s,d| puts "\t\tDATA: #{d}"}
     cnt += 1
 	end
 
