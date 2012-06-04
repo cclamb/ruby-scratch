@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-puts "Starting spinner ARGF: #{ARGF.argv.size}.\n"
+msg = if ARGF.argv.size > 0
+  puts "Starting spinner ARGF: #{ARGF.argv}.\n"
+else
+  puts 'Starting spinner.'
+end
 
 Process::daemon true, false
 
