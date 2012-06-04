@@ -3,7 +3,11 @@
 msg = if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
-  puts 'Starting spinner.'
+  s = ''
+  ARGF.readline do |line|
+    s += line
+  end
+  puts "Starting spinner: #{s}"
 end
 
 Process::daemon true, false

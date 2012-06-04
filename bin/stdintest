@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-puts "#{ARGF}"
-puts "(#{ARGF.argv})"
-puts ARGF.argv.size
+
+
+# puts "#{ARGF}"
+# puts "(#{ARGF.argv})"
+# puts ARGF.argv.size
 #ARGF.each { |e| puts "element: #{e}"}
