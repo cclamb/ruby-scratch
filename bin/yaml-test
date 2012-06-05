@@ -3,7 +3,7 @@
 require 'psych'
 require 'yaml'
 
-yaml_file = File::open 'etc/config.yml'
+yaml_file = File::open 'etc/config.yaml'
 c = YAML::load yaml_file
 # puts c.public_methods - Object.new.public_methods
 puts c
