@@ -1,6 +1,7 @@
 source :rubygems
 gemspec
 
+gem 'railsless-deploy', :require => nil
 gem 'logging'
 gem 'gli'
 gem 'aws-sdk'

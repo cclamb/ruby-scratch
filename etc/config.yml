@@ -1,0 +1,12 @@
+---
+  hatchery-node-0:
+    hostname: hatchery-node-0
+    context_server: server
+
+  hatchery-node-1:
+    hostname: hatchery-node-1
+    context_server: server
+
+  hatchery-node-2:
+    hostname: hatchery-node-2
+    context_server: server

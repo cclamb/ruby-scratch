@@ -10,7 +10,7 @@ set :application, 'ruby-scratch'
 set :repository,  'https://github.com/cclamb/ruby-scratch.git'
 
 set :user, 'overlay'
-set :password, ''
+set :password, 'ab212719'
 #hosts = '173.45.253.130'
 
 set :scm, :git
@@ -53,9 +53,8 @@ cnt = 0
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-    cmd = "current/bin/spinner #{cnt}"
-    puts "\t\tCMD: #{cmd}"
-		run cmd, { :data => cnt } { |c,s,d| puts "\t\tDATA: #{d}"}
+    cmd = "current/bin/spinner #{cnt += 1}"
+		run "current/bin/spinner #{cnt += 1}", :data => 'stdintest' #{ |c,s,d| puts "\t\tDATA: #{d}"}
     cnt += 1
 	end
 

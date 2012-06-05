@@ -3,11 +3,11 @@
 msg = if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
-  s = ''
-  puts "reading from ARGF..."
-  ARGF.readline do |line|
-    s += line
-  end
+  # s = ''
+  # puts "reading from ARGF..."
+  # ARGF.readline do |line|
+  #   s += line
+  # end
   puts "Starting spinner: #{s}"
 end
 
