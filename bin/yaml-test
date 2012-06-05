@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'psych'
+# require 'psych'
 require 'yaml'
 
 yaml_file = File::open 'etc/config.yaml'
 c = YAML::load yaml_file
 # puts c.public_methods - Object.new.public_methods
-puts c
+puts c['rs1']
+puts c['rs1']['peer']
 

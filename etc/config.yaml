@@ -1,12 +1,30 @@
+#
+# Two domains, two nodes per domain.  Hierarchical.
 ---
-  hatchery-node-0:
-    hostname: hatchery-node-0
-    context_server: server
+  rs0:
+    hostname: rs0
+    context_server: http://localhost:4567
+    role: router
+    peers:
+      - rs1
+    children:
+      - rs2
 
-  hatchery-node-1:
-    hostname: hatchery-node-1
-    context_server: server
+  rs1:
+    hostname: rs1
+    context_server: http://localhost:4567
+    role: router
+    peers:
+      - rs0
+    children:
+      - rs3
 
-  hatchery-node-2:
-    hostname: hatchery-node-2
-    context_server: server
+  rs2:
+    hostname: rs2
+    context_server: http://localhost:4567
+    parent: rs0
+
+  rs3:
+    hostname: rs3
+    context_server: http://localhost:4567
+    parent: rs1
