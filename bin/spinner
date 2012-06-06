@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 
+require 'socket'
+
 msg = if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
-  puts "Starting spinner."
+  hostname = Socket.gethostname
+  puts "Starting spinner on ${hostname}."
 end
 
 Process::daemon true, false
