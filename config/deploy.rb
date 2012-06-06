@@ -36,14 +36,11 @@ AWS.config \
   :access_key_id => creds['amazon']['access_key'], \
   :secret_access_key => creds['amazon']['secret_key']
 
+# Push to S3
 config_bucket = AWS::S3.new.buckets[:chrislambistan_configuration]
 config_bucket.clear!
 obj = config_bucket.objects[:current]
 obj.write :file => config_file_name
-
-
-# Push to S3
-
 
 # task :spinner_start, :roles => :nodes do
 # 	run 'ruby-scratch/bin/spinner'
@@ -58,7 +55,7 @@ cnt = 0
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-		#run "current/bin/spinner"
+		run "current/bin/spinner"
 	end
 
 end

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'socket'
+require 'aws-sdk'
 
 msg = if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
