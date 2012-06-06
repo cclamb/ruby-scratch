@@ -1,39 +1,49 @@
 
+require 'yaml'
+require 'aws-sdk'
+
 set :application, 'ruby-scratch'
 set :repository,  'https://github.com/cclamb/ruby-scratch.git'
 
+creds_file_name = 'etc/creds.yaml'
+
+creds = YAML::load File::open(creds_file_name)
+
+msg =<<EOF
+Submitted credentials are:
+  rackspace password: #{creds['rackspace']['password']}
+  amazon access key: #{creds['amazon']['access_key']}
+  amazon secret key: #{creds['amazon']['secret_key']}
+EOF
+
+puts msg
+
 set :user, 'overlay'
-set :password, ''
-#hosts = '173.45.253.130'
+set :password, creds['rackspace']['password']
 
 set :scm, :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-# role :app, "your app-server here"                          # This may be the same as your `Web` server
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
 set :use_sudo, false
 set :deploy_to, '~'
 
 role :nodes, '198.101.205.153', \
   '198.101.205.155', \
-  '198.101.205.155'
+  '198.101.205.156'
+
+# Prime simulation configuration
+config_file_name = 'etc/config.yaml'
+
+AWS.config \
+  :access_key_id => creds['amazon']['access_key'], \
+  :secret_access_key => creds['amazon']['secret_key']
+
+config_bucket = AWS::S3.new.buckets[:chrislambistan_configuration]
+config_bucket.clear!
+obj = config_bucket.objects[:current]
+obj.write :file => config_file_name
+
+
+# Push to S3
+
 
 # task :spinner_start, :roles => :nodes do
 # 	run 'ruby-scratch/bin/spinner'
@@ -48,7 +58,7 @@ cnt = 0
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-		run "current/bin/spinner"
+		#run "current/bin/spinner"
 	end
 
 end
