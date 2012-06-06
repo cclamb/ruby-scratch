@@ -6,7 +6,7 @@ msg = if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
   hostname = Socket.gethostname
-  puts "Starting spinner on ${hostname}."
+  puts "Starting spinner on #{hostname}."
 end
 
 Process::daemon true, false
