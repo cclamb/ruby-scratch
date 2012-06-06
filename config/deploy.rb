@@ -1,16 +1,9 @@
 
-rackspace_nodes = {
-  :hatchery_node_0 => '173.45.253.130',
-  :hatchery_node_1 => '198.101.199.40',
-  :hatchery_node_2 => '198.101.199.41'
-}
-
-
 set :application, 'ruby-scratch'
 set :repository,  'https://github.com/cclamb/ruby-scratch.git'
 
 set :user, 'overlay'
-set :password, 'ab212719'
+set :password, ''
 #hosts = '173.45.253.130'
 
 set :scm, :git
@@ -38,7 +31,9 @@ set :scm, :git
 set :use_sudo, false
 set :deploy_to, '~'
 
-role :nodes, '173.45.253.130', '198.101.199.40', '198.101.199.41'
+role :nodes, '198.101.205.153', \
+  '198.101.205.155', \
+  '198.101.205.155'
 
 # task :spinner_start, :roles => :nodes do
 # 	run 'ruby-scratch/bin/spinner'
@@ -53,9 +48,7 @@ cnt = 0
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-    cmd = "current/bin/spinner #{cnt += 1}"
-		run "current/bin/spinner #{cnt += 1}", :data => 'stdintest' #{ |c,s,d| puts "\t\tDATA: #{d}"}
-    cnt += 1
+		run "current/bin/spinner"
 	end
 
 end
