@@ -9,16 +9,16 @@ require 'uri'
 hostname = Socket.gethostname
 
 ARGF.argv.size > 0
-  puts "Starting spinner on #{hostname}, ARGF: #{ARGF.argv}.\n"
+  puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
   puts "Starting spinner on #{hostname}."
 end
 
 
-uri = URI::Parse ARGF.argv[0]
-response = Net::HTTP.get_response uri
+# uri = URI::Parse ARGF.argv[0]
+# response = Net::HTTP.get_response uri
 
-puts "Response: #{response}"
+# puts "Response: #{response}"
 
 Process::daemon true, false
 
