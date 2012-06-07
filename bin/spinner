@@ -2,7 +2,7 @@
 
 require 'socket'
 require 'aws-sdk'
-require 'net/http'
+require 'net/https'
 require 'uri'
 
 
@@ -14,11 +14,16 @@ else
   puts "Starting spinner on #{hostname}."
 end
 
+url = ARGF.argv[0]
+puts "URL : #{url}"
+uri = URI.parse url
+http = Net::HTTP.new uri.host, uri.port
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+request = Net::HTTP::Get.new uri.request_uri
+response = http.request request
 
-uri = URI::parse ARGF.argv[0]
-response = Net::HTTP.get_response uri
-
-puts "Response: #{response}"
+puts "Response: #{response.body}"
 
 Process::daemon true, false
 
