@@ -46,21 +46,14 @@ config_bucket = AWS::S3.new.buckets[:chrislambistan_configuration]
 config_bucket.clear!
 obj = config_bucket.objects[:current]
 obj.write :file => config_file_name
-
-# task :spinner_start, :roles => :nodes do
-# 	run 'ruby-scratch/bin/spinner'
-# end
-
-# task :spinner_refresh, :roles => :nodes do
-# 	run 'cd ruby-scratch ; git pull'
-# end
+url = obj.url_for :read
 
 cnt = 0
 
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-		run "current/bin/spinner #{access_key} #{secret_key}"
+		run "cd current ; bundle exec bin/spinner #{url}"
 	end
 
 end
