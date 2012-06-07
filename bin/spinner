@@ -8,7 +8,7 @@ require 'uri'
 
 
 
-ARGF.argv.size > 0
+if ARGF.argv.size > 0
   puts "Starting spinner ARGF: #{ARGF.argv}.\n"
 else
   hostname = Socket.gethostname
