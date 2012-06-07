@@ -50,10 +50,12 @@ url = obj.url_for :read
 
 cnt = 0
 
+puts "URL : #{url}"
+
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-		run "cd current ; bundle exec bin/spinner #{url}"
+		run "cd current ; bundle exec bin/spinner \"#{url}\""
 	end
 
 end
