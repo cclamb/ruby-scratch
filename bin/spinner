@@ -5,8 +5,8 @@ require 'aws-sdk'
 require 'net/http'
 require 'uri'
 
-msg = if ARGF.argv.size > 0
-  puts "Starting spinner ARGF: #{ARGF.argv}.\n"
+ARGF.argv.size > 0
+  puts "Starting spinner on #{hostname}, ARGF: #{ARGF.argv}.\n"
 else
   hostname = Socket.gethostname
   puts "Starting spinner on #{hostname}."
