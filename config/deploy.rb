@@ -1,4 +1,6 @@
 
+require 'bundler/capistrano'
+
 require 'yaml'
 require 'aws-sdk'
 
@@ -32,9 +34,12 @@ role :nodes, '198.101.205.153', \
 # Prime simulation configuration
 config_file_name = 'etc/config.yaml'
 
+access_key = creds['amazon']['access_key']
+secret_key = creds['amazon']['secret_key']
+
 AWS.config \
-  :access_key_id => creds['amazon']['access_key'], \
-  :secret_access_key => creds['amazon']['secret_key']
+  :access_key_id => access_key, \
+  :secret_access_key => secret_key
 
 # Push to S3
 config_bucket = AWS::S3.new.buckets[:chrislambistan_configuration]
@@ -55,7 +60,7 @@ cnt = 0
 namespace :nodes do
 
 	task :start, :roles => :nodes do
-		run "current/bin/spinner"
+		run "current/bin/spinner #{access_key} #{secret_key}"
 	end
 
 end
