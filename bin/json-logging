@@ -34,7 +34,6 @@ appender = Logging.appenders.s3 \
 # obj = bucket.objects["#{@base_tag} #{time.inspect} - #{time.usec}".to_sym]
 # obj.write "---\n\taction: Test #{$access_key} #{$secret_key}"
 
-
 log = Logging.logger[self]
 log.add_appenders 's3'
 
