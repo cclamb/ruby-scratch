@@ -5,6 +5,7 @@ require 'aws-sdk'
 require 'net/https'
 require 'uri'
 require 'yaml'
+require 'logging'
 
 
 hostname = Socket.gethostname
@@ -14,6 +15,9 @@ if ARGF.argv.size > 0
 else
   puts "Starting spinner on #{hostname}."
 end
+
+access_key = ARGF.argv[1]
+secret_key = ARGF.argv[2]
 
 url = ARGF.argv[0]
 uri = URI.parse url
@@ -25,6 +29,17 @@ response = http.request request
 
 ctx = YAML::load response.body
 puts ctx[hostname].inspect
+
+AWS.config \
+  :access_key_id => access_key, \
+  :secret_access_key => secret_key
+
+msg =<<EOF
+Submitted credentials are:
+  amazon access key: #{access_key}
+  amazon secret key: #{secret_key}
+EOF
+puts msg
 
 Process::daemon true, false
 
