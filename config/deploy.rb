@@ -1,8 +1,13 @@
 
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 
 require 'yaml'
 require 'aws-sdk'
+
+set :rvm_ruby_string, '1.9.3'
+
+ssh_options[:keys] = ['etc/pod.pem']
 
 set :application, 'ruby-scratch'
 set :repository,  'https://github.com/cclamb/ruby-scratch.git'
@@ -29,7 +34,8 @@ set :deploy_to, '~'
 
 role :nodes, '198.101.205.153', \
   '198.101.205.155', \
-  '198.101.205.156'
+  '198.101.205.156', \
+  'ec2-67-202-45-247.compute-1.amazonaws.com'
 
 # Prime simulation configuration
 config_file_name = 'etc/config.yaml'
