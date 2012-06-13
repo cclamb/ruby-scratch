@@ -35,7 +35,24 @@ set :deploy_to, '~'
 role :nodes, '198.101.205.153', \
   '198.101.205.155', \
   '198.101.205.156', \
-  'ec2-67-202-45-247.compute-1.amazonaws.com'
+  '198.101.203.202', \
+  '198.101.209.178', \
+  '198.101.209.247', \
+  '198.101.202.188', \
+  '198.101.207.34', \
+  '198.101.207.48', \
+  '198.101.207.236', \
+  'ec2-67-202-45-247.compute-1.amazonaws.com', \
+  'ec2-23-20-43-173.compute-1.amazonaws.com', \
+  'ec2-50-17-85-234.compute-1.amazonaws.com', \
+  'ec2-23-22-68-94.compute-1.amazonaws.com', \
+  'ec2-50-17-57-243.compute-1.amazonaws.com', \
+  'ec2-50-16-141-176.compute-1.amazonaws.com', \
+  'ec2-184-73-138-154.compute-1.amazonaws.com', \
+  'ec2-107-20-47-98.compute-1.amazonaws.com', \
+  'ec2-184-73-2-121.compute-1.amazonaws.com', \
+  'ec2-23-22-144-216.compute-1.amazonaws.com'
+
 
 # Prime simulation configuration
 config_file_name = 'etc/config.yaml'
